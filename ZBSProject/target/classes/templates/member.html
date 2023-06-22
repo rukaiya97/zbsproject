@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>ZBS Inspections</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#483D8B;">
+	    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ZBS Inspections</a>
+	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	                <li class="nav-item">
+	                    <a class="nav-link" aria-current="page" th:href="@{/vehicle}">Vehicle</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link active" aria-current="page" th:href="@{/member}">Member</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" aria-current="page" th:href="@{/payment}">Payment</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" aria-current="page" th:href="@{/ViewUser}">Users</a>
+	                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" th:href="@{/logout}">LogOut</a>
+                  </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<div class='row'>
+			<div class="col-sm-12">
+				<h3>
+          View Member
+        </h3>
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-bordered table-sm">
+						<thead>
+							<tr>
+								<th>SN</th>
+								<th>Name</th>
+								<th>Gender</th>
+								<th>National ID</th>
+								<th>Address</th>
+								<th>Phone</th>
+                				<th>Username</th>
+                				<th>Status</th>
+								<th>Event</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr th:each="member: ${members}">
+						            <td width="20px" th:text="${member.mid}"></td>
+						            <td th:text="${member.name}"></td>
+						            <td th:text="${member.gender}"></td>
+						            <td th:text="${member.national_id}"></td>
+						            <td th:text="${member.address}"></td>
+						            <td th:text="${member.phone}"></td>
+						            <td th:text="${member.username}"></td>
+						            <td th:text="${member.live_status}"></td>
+						            <td>
+						            	<button class='btn btn-primary btn-sm btnEdit' th:value="${member.mid}" data-bs-toggle="modal" data-bs-target="#EditUser">Stop View</button>
+						            	<button class='btn btn-danger btn-sm btnRemove' th:value="${member.mid}">Delete</button>
+						            </td>
+						       </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
